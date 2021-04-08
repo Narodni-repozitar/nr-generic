@@ -1,29 +1,18 @@
-# -*- coding: utf-8 -*-
-#
-# Copyright (C) 2019 CIS UCT Prague.
-#
-# CIS theses repository is free software; you can redistribute it and/or modify it
-# under the terms of the MIT License; see LICENSE file for more details.
-
-"""Default configuration."""
-
 from __future__ import absolute_import, print_function
 
 from invenio_records_rest.facets import terms_filter, range_filter
-from invenio_records_rest.utils import allow_all
+from invenio_records_rest.utils import allow_all, deny_all
 from oarepo_communities.links import community_record_links_factory
-from oarepo_communities.search import CommunitySearch
+from oarepo_multilingual import language_aware_text_term_facet, \
+    language_aware_text_terms_filter
 from oarepo_records_draft.rest import term_facet, DRAFT_IMPORTANT_FILTERS, DRAFT_IMPORTANT_FACETS
+from oarepo_ui.facets import date_histogram_facet, translate_facets
+from oarepo_ui.filters import group_by_terms_filter, boolean_filter
 
 from nr_generic.constants import PUBLISHED_COMMON_PID_TYPE, PUBLISHED_COMMON_RECORD, \
     DRAFT_COMMON_PID_TYPE, DRAFT_COMMON_RECORD
 from nr_generic.record import published_index_name, draft_index_name
-from oarepo_multilingual import language_aware_text_term_facet, \
-    language_aware_text_terms_filter
-from oarepo_ui.facets import date_histogram_facet, translate_facets
-from oarepo_ui.filters import group_by_terms_filter, boolean_filter
-
-
+from nr_generic.search import GenericRecordsSearch
 
 _ = lambda x: x
 
@@ -36,25 +25,64 @@ RECORDS_DRAFT_ENDPOINTS = {
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
         'record_class': PUBLISHED_COMMON_RECORD,
-        # TODO: doplnit indexer class
-        'list_route': '/common/',
-        'item_route': '/common/',
-        'publish_permission_factory_imp': allow_all,  # TODO: change this !!!
-        'unpublish_permission_factory_imp': allow_all,
-        'edit_permission_factory_imp': allow_all,
-        'default_media_type': 'application/json',
         'search_index': published_index_name,
+
+        'list_route': '/<community_id>/common/',
+        'item_route': f'/<commpid(nrthe,model="common",record_class="nr_generic.record:PublishedThesisRecord"):pid_value>',
+
+        'publish_permission_factory_imp': 'nr_common.permissions.publish_draft_object_permission_impl',
+        'unpublish_permission_factory_imp': 'nr_common.permissions.unpublish_draft_object_permission_impl',
+        'edit_permission_factory_imp': 'nr_common.permissions.update_object_permission_impl',
+        'list_permission_factory_imp': allow_all,
+        'read_permission_factory_imp': allow_all,
+        'create_permission_factory_imp': deny_all,
+        'update_permission_factory_imp': deny_all,
+        'delete_permission_factory_imp': deny_all,
+        'default_media_type': 'application/json',
         'links_factory_imp': community_record_links_factory,
-        'search_class': CommunitySearch
+        'search_class': GenericRecordsSearch,
+        # 'indexer_class': CommitingRecordIndexer,
+        'files': dict(
+            # Who can upload attachments to a draft dataset record
+            put_file_factory=deny_all,
+            # Who can download attachments from a draft dataset record
+            get_file_factory=allow_all,
+            # Who can delete attachments from a draft dataset record
+            delete_file_factory=deny_all
+        )
+
     },
     'draft-common': {
         'pid_type': DRAFT_COMMON_PID_TYPE,
         'record_class': DRAFT_COMMON_RECORD,
-        'list_route': '/draft/common/',
-        'item_route': '/draft/common/',
+
+        'list_route': '/<community_id>/common/draft/',
+        'item_route': f'/<commpid(nrthe,model="common/draft",record_class="nr_generic.record:DraftThesisRecord"):pid_value>',
         'search_index': draft_index_name,
         'links_factory_imp': community_record_links_factory,
-        'search_class': CommunitySearch
+        'search_class': GenericRecordsSearch,
+'search_serializers': {
+            'application/json': 'oarepo_validate:json_search',
+        },
+        'record_serializers': {
+            'application/json': 'oarepo_validate:json_response',
+        },
+
+        'create_permission_factory_imp': 'nr_common.permissions.create_draft_object_permission_impl',
+        'update_permission_factory_imp': 'nr_common.permissions.update_draft_object_permission_impl',
+        'read_permission_factory_imp': 'nr_common.permissions.read_draft_object_permission_impl',
+        'delete_permission_factory_imp': 'nr_common.permissions.delete_draft_object_permission_impl',
+        'list_permission_factory_imp': 'nr_common.permissions.list_draft_object_permission_impl',
+        'record_loaders': {
+            'application/json': 'oarepo_validate.json_files_loader',
+            'application/json-patch+json': 'oarepo_validate.json_loader'
+        },
+        'files': dict(
+            put_file_factory='nr_common.permissions.put_draft_file_permission_impl',
+            get_file_factory='nr_common.permissions.get_draft_file_permission_impl',
+            delete_file_factory='nr_common.permissions.delete_draft_file_permission_impl'
+        )
+
     }
 }
 

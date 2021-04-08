@@ -3,6 +3,8 @@ import os
 from flask import url_for
 from invenio_records.api import Record
 from nr_common.marshmallow import CommonMetadataSchemaV2
+from oarepo_communities.converters import CommunityPIDValue
+from oarepo_communities.proxies import current_oarepo_communities
 from oarepo_communities.record import CommunityRecordMixin
 from oarepo_records_draft.record import InvalidRecordAllowedMixin, DraftRecordMixin
 from oarepo_references.mixins import ReferenceEnabledRecordMixin
@@ -37,7 +39,10 @@ class PublishedCommonRecord(InvalidRecordAllowedMixin, CommonBaseRecord):
     @property
     def canonical_url(self):
         return url_for('invenio_records_rest.common_item',
-                       pid_value=self['control_number'], _external=True)
+                       pid_value=CommunityPIDValue(
+                           self['control_number'],
+                           current_oarepo_communities.get_primary_community_field(self)),
+                       _external=True)
 
 
 class DraftCommonRecord(DraftRecordMixin, CommonBaseRecord):
@@ -46,4 +51,7 @@ class DraftCommonRecord(DraftRecordMixin, CommonBaseRecord):
     @property
     def canonical_url(self):
         return url_for('invenio_records_rest.draft-common_item',
-                       pid_value=self['control_number'], _external=True)
+                       pid_value=CommunityPIDValue(
+                           self['control_number'],
+                           current_oarepo_communities.get_primary_community_field(self)),
+                       _external=True)

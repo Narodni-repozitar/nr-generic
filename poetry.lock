@@ -1095,8 +1095,8 @@ elasticsearch6 = ["invenio-search[elasticsearch6] (>=1.3.1,<1.4.0)"]
 elasticsearch7 = ["invenio-search[elasticsearch7] (>=1.3.1,<1.4.0)"]
 files = ["invenio-files-rest (>=1.2.0,<1.3.0)", "invenio-iiif (>=1.1.0,<1.2.0)", "invenio-previewer (>=1.2.1,<1.3.0)", "invenio-records-files (>=1.2.1,<1.3.0)"]
 metadata = ["invenio-indexer (>=1.1.1,<1.2.0)", "invenio-jsonschemas (>=1.1.0,<1.2.0)", "invenio-oaiserver (>=1.2.0,<1.3.0)", "invenio-pidstore (>=1.2.0,<1.3.0)", "invenio-records-rest (>=1.7.1,<1.8.0)", "invenio-records-ui (>=1.1.0,<1.2.0)", "invenio-records (>=1.3.1,<1.4.0)", "invenio-search-ui (>=1.2.0,<1.3.0)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.5,<1.1.0)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.5,<1.1.0)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.5,<1.1.0)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.5,<1.1.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.5,<1.1.0)"]
 tests = ["check-manifest (>=0.35)", "coverage (>=4.5.3)", "isort (>=4.3)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-invenio (>=1.3.1,<1.4.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
 
@@ -1117,8 +1117,8 @@ invenio-i18n = ">=1.2.0"
 [package.extras]
 all = ["Sphinx (>=3)", "cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>=2.10.5)"]
 docs = ["Sphinx (>=3)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.8)"]
 sqlite = ["invenio-db[sqlite,versioning] (>=1.0.8)"]
 tests = ["cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>=2.10.5)"]
 
@@ -1156,8 +1156,8 @@ ua-parser = ">=0.7.3"
 admin = ["invenio-admin (>=1.2.1)"]
 all = ["invenio-admin (>=1.2.1)", "Sphinx (>=3)", "pytest-invenio (>=1.4.0)"]
 docs = ["Sphinx (>=3)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.8)"]
 sqlite = ["invenio-db[versioning] (>=1.0.8)"]
 tests = ["pytest-invenio (>=1.4.0)"]
 
@@ -1548,8 +1548,8 @@ WTForms-Alchemy = ">=0.15.0"
 admin = ["invenio-admin (>=1.2.1)"]
 all = ["invenio-admin (>=1.2.1)", "Sphinx (>=2,<3)", "redis (>=2.10.5)", "pytest-invenio (>=1.4.0)"]
 docs = ["Sphinx (>=2,<3)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.8)"]
 redis = ["redis (>=2.10.5)"]
 sqlite = ["invenio-db[versioning] (>=1.0.8)"]
 tests = ["pytest-invenio (>=1.4.0)"]
@@ -1658,8 +1658,8 @@ werkzeug = ">=0.14.1"
 admin = ["Flask-Admin (>=1.3.0)"]
 all = ["Sphinx (>=1.7.2)", "Flask-Admin (>=1.3.0)", "check-manifest (>=0.25)", "coverage (>=4.5.3)", "Flask-Menu (>=0.5.0)", "invenio-admin (>=1.0.0)", "isort (>=4.3.0)", "mock (>=1.3.0)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
 docs = ["Sphinx (>=1.7.2)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.0)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.0)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.0)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.0)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.5.3)", "Flask-Menu (>=0.5.0)", "invenio-admin (>=1.0.0)", "isort (>=4.3.0)", "mock (>=1.3.0)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
 
@@ -1680,8 +1680,8 @@ invenio-records-rest = ">=1.6.3"
 [package.extras]
 all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-indexer (>=1.1.0)", "invenio-search[elasticsearch6] (>=1.2.0)", "isort (>=4.3.4)", "mock (>=1.3.0)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.7.0)"]
 docs = ["Sphinx (>=1.5.1)"]
-mysql = ["invenio-db[versioning,mysql] (>=1.0.0)"]
-postgresql = ["invenio-db[versioning,postgresql] (>=1.0.0)"]
+mysql = ["invenio-db[mysql,versioning] (>=1.0.0)"]
+postgresql = ["invenio-db[postgresql,versioning] (>=1.0.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.0)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-indexer (>=1.1.0)", "invenio-search[elasticsearch6] (>=1.2.0)", "isort (>=4.3.4)", "mock (>=1.3.0)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.7.0)"]
 
@@ -1734,9 +1734,9 @@ invenio-pidstore = ">=1.2.0"
 invenio-records = ">=1.0.0"
 
 [package.extras]
-all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[versioning,postgresql,mysql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[postgresql,mysql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 docs = ["Sphinx (>=1.5.1)"]
-tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[versioning,postgresql,mysql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[postgresql,mysql,versioning] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 
 [[package]]
 name = "invenio-rest"
@@ -2441,7 +2441,7 @@ tests = ["alembic (==1.5.8)", "amqp (==5.0.6)", "angular-gettext-babel (==0.3)",
 
 [[package]]
 name = "oarepo-communities"
-version = "1.4.2"
+version = "2.0.3"
 description = "OArepo module that adds support for communities"
 category = "dev"
 optional = false
@@ -2449,7 +2449,7 @@ python-versions = "*"
 
 [package.dependencies]
 oarepo-enrollment-permissions = "*"
-oarepo-fsm = ">=1.5.0"
+oarepo-fsm = ">=1.6.1"
 oarepo-micro-api = "*"
 oarepo-ui = "*"
 
@@ -2475,7 +2475,7 @@ tests = ["pytest", "oarepo[tests] (>=3.3,<4.0)"]
 
 [[package]]
 name = "oarepo-enrollments"
-version = "1.2.1"
+version = "1.2.2"
 description = "OArepo Enrollments library for record metadata validation"
 category = "dev"
 optional = false
@@ -2492,7 +2492,7 @@ tests = ["pytest", "oarepo[tests] (>=3.3,<4.0)", "mock"]
 
 [[package]]
 name = "oarepo-fsm"
-version = "1.6.2"
+version = "1.6.3"
 description = "OArepo FSM library for record state transitions"
 category = "dev"
 optional = false
@@ -2650,7 +2650,7 @@ tests-es7 = ["invenio-i18n", "oarepo", "oarepo[tests-es7] (>=3.3.0,<3.4.0)"]
 
 [[package]]
 name = "oarepo-validate"
-version = "1.5.2"
+version = "1.5.3"
 description = "OArepo Validate library for record metadata validation"
 category = "dev"
 optional = false
@@ -3291,9 +3291,9 @@ widechars = ["wcwidth"]
 
 [[package]]
 name = "techlib-nr-common"
-version = "3.0.0a41"
+version = "3.0.0a42"
 description = "NR common data types"
-category = "dev"
+category = "main"
 optional = false
 python-versions = ">=3.8,<4.0"
 
@@ -3567,7 +3567,7 @@ docs = ["sphinx"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "74f008b4e44fbb4e888d7df54883ec5290227644ff5643fdb08eab77d30ef0e7"
+content-hash = "1c49da5f196ae181891d4153fd70d0618138edfd692a0bebd0bed0aea75e7016"
 
 [metadata.files]
 alabaster = [
@@ -4376,20 +4376,20 @@ oarepo = [
     {file = "oarepo-3.3.59.tar.gz", hash = "sha256:6432be841460f14ba661e024cbb9efe5cd4db9a1875401a82a961f5e27c30860"},
 ]
 oarepo-communities = [
-    {file = "oarepo-communities-1.4.2.tar.gz", hash = "sha256:6c1d79901a05488ede516e575454262ecd40eb7c29ce89d5653871290aa26840"},
-    {file = "oarepo_communities-1.4.2-py2.py3-none-any.whl", hash = "sha256:ce7a8759d19b1c6797996ac43c97e51aa8307accd9731b073e10105b88ded8c0"},
+    {file = "oarepo-communities-2.0.3.tar.gz", hash = "sha256:da1af2af1512cafdff977b6c75e7d9d12cc2fa8dbd6219ac0b08e16264e44895"},
+    {file = "oarepo_communities-2.0.3-py2.py3-none-any.whl", hash = "sha256:65bb300937d8bc3888d5bfc52fe0bd4d39c719ae7ae632c565980691998b7a39"},
 ]
 oarepo-enrollment-permissions = [
     {file = "oarepo-enrollment-permissions-1.0.1.tar.gz", hash = "sha256:3c5338326c84c40550f126e67bcf8203e9f3887158db245a73aee566ff966c85"},
     {file = "oarepo_enrollment_permissions-1.0.1-py2.py3-none-any.whl", hash = "sha256:f19c70d3606d8493c8101c808cd3699a41d1ddbe10b9555806d6337b72df4453"},
 ]
 oarepo-enrollments = [
-    {file = "oarepo-enrollments-1.2.1.tar.gz", hash = "sha256:8b61d30afc6af26bbac5c0a9c4a4e1eda47ef74236b64bbd234b079b012e9f2c"},
-    {file = "oarepo_enrollments-1.2.1-py2.py3-none-any.whl", hash = "sha256:18f11f118250db65902ef12632dabbb5f5dea41eb02599ca1ebc3d2d05aa729f"},
+    {file = "oarepo-enrollments-1.2.2.tar.gz", hash = "sha256:f392e552a4b828590f5f4bd0bec4df16e6193c194f2fdd4c0f4c991325dd25f1"},
+    {file = "oarepo_enrollments-1.2.2-py2.py3-none-any.whl", hash = "sha256:1a0fef217325aee276c19a5dee7c12fde6acd9b9723911b54060d0b3fda07137"},
 ]
 oarepo-fsm = [
-    {file = "oarepo-fsm-1.6.2.tar.gz", hash = "sha256:2fb477b54aff22ad7e8941f0f97129d20ab98defc196d4142062f431f8d45a07"},
-    {file = "oarepo_fsm-1.6.2-py2.py3-none-any.whl", hash = "sha256:7b6007ac214acc56633dc3643f30738cc9cf503235a17e424146b41aeaf08a22"},
+    {file = "oarepo-fsm-1.6.3.tar.gz", hash = "sha256:2060bc0c0e3fe93a849d32137113b2e3a60c9839a55d32026d2b649985dddb29"},
+    {file = "oarepo_fsm-1.6.3-py2.py3-none-any.whl", hash = "sha256:e98a3b82491bc08f64b94ce7f4faa8b7e51af7595db3ac31cc7dbaf9f79097d6"},
 ]
 oarepo-heartbeat = [
     {file = "oarepo-heartbeat-1.0.0.tar.gz", hash = "sha256:f84324faa5933025bac5e7f22c6f8dc010db526757dd0bc288bfceca651046bd"},
@@ -4427,8 +4427,8 @@ oarepo-ui = [
     {file = "oarepo_ui-2.3.0.tar.gz", hash = "sha256:d493769ecdf0afd72b14dff9f62e7561fd13455c1876a3755de161c815a374aa"},
 ]
 oarepo-validate = [
-    {file = "oarepo-validate-1.5.2.tar.gz", hash = "sha256:d928aa102cef1c9d2eff118b72fcde263aacab61c3626f06bc36d9da49bf5186"},
-    {file = "oarepo_validate-1.5.2-py2.py3-none-any.whl", hash = "sha256:8503e83bf6c0b88ff08a41d6c22a1acb3b7e8ed2d64817e4e0ae587e86390113"},
+    {file = "oarepo-validate-1.5.3.tar.gz", hash = "sha256:517fdeb4302fcf28ef615921efc558f3dfb8af75167be3a4512f3cc9c44a8e82"},
+    {file = "oarepo_validate-1.5.3-py2.py3-none-any.whl", hash = "sha256:efb0575ccccb97cc6c8f9b7e76839abb894d5401184e0be8127805c6fa305e3b"},
 ]
 oauthlib = [
     {file = "oauthlib-2.1.0-py2.py3-none-any.whl", hash = "sha256:d883b36b21a6ad813953803edfa563b1b579d79ca758fe950d1bc9e8b326025b"},
@@ -4810,8 +4810,8 @@ tabulate = [
     {file = "tabulate-0.8.9.tar.gz", hash = "sha256:eb1d13f25760052e8931f2ef80aaf6045a6cceb47514db8beab24cded16f13a7"},
 ]
 techlib-nr-common = [
-    {file = "techlib-nr-common-3.0.0a41.tar.gz", hash = "sha256:ea9ef3ab25b7c4feff82b7c04267111e343739efd16f2c94d427df7ae411e4d2"},
-    {file = "techlib_nr_common-3.0.0a41-py3-none-any.whl", hash = "sha256:121df84e5a86ad6be0f68d3b372969cb4842674704f472b03cc30380be01ccc9"},
+    {file = "techlib-nr-common-3.0.0a42.tar.gz", hash = "sha256:4c4269f51220ae19bc70260993495deb6d490db9bdacf78566d4acc3ad83305d"},
+    {file = "techlib_nr_common-3.0.0a42-py3-none-any.whl", hash = "sha256:ec93b2f7359349ec0479004fcb1342fd8d4adfce1a36fbed53495ad394c21c8f"},
 ]
 testpath = [
     {file = "testpath-0.4.4-py2.py3-none-any.whl", hash = "sha256:bfcf9411ef4bf3db7579063e0546938b1edda3d69f4e1fb8756991f5951f85d4"},
