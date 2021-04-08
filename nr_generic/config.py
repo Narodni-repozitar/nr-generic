@@ -61,7 +61,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'search_index': draft_index_name,
         'links_factory_imp': community_record_links_factory,
         'search_class': GenericRecordsSearch,
-'search_serializers': {
+        'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
         },
         'record_serializers': {
