@@ -17,7 +17,6 @@ isbnlib = "^3.10.3"
 sphinx = { version = "^1.5.1", optional = true }
 python-stdnum = "^1.16"
 oarepo-invenio-model = "^2.0.0"
-techlib-nr-common = {version="^3.0.0a41"}
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0.0"
@@ -33,6 +32,7 @@ oarepo-records-draft = "^5.0.0a7"
 pytest-runner = "^5.3.0"
 oarepo-fsm = "^1.5.0"
 oarepo-communities = "^1.3.4"
+techlib-nr-common = "^3.0.0-alpha.41"
 
 [tool.poetry.extras]
 docs = ["sphinx"]
@@ -43,20 +43,11 @@ docs = ["sphinx"]
 [tool.poetry.plugins."invenio_base.api_apps"]
 'nr_generic' = 'nr_generic:NRCommon'
 
-[tool.poetry.plugins."invenio_jsonschemas.schemas"]
-"nr_generic" = "nr_generic.jsonschemas"
-
 [tool.poetry.plugins."invenio_pidstore.minters"]
-"nr_generic" = "nr_generic.minters:nr_id_minter"
+"nr_generic" = "nr_generic.minters:nr_id_generic_minter"
 
 [tool.poetry.plugins."invenio_pidstore.fetchers"]
-"nr_generic" = "nr_generic.fetchers:nr_id_fetcher"
-
-[tool.poetry.plugins."invenio_db.alembic"]
-"nr_generic" = "nr_generic:alembic"
-
-[tool.poetry.plugins."oarepo_mapping_includes"]
-"nr_generic" = "nr_generic.mapping_includes"
+"nr_generic" = "nr_generic.fetchers:nr_id_generic_fetcher"
 
 [tool.poetry.plugins."invenio_search.mappings"]
-"nr_generic" = "nr_generic.mappings"
+"nr_common" = "nr_generic.mappings"

@@ -31,8 +31,8 @@ RECORDS_DRAFT_ENDPOINTS = {
     'common': {
         'draft': 'draft-common',
         'pid_type': PUBLISHED_COMMON_PID_TYPE,
-        'pid_minter': 'nr_generic',
-        'pid_fetcher': 'nr_generic',
+        'pid_minter': 'nr_common',
+        'pid_fetcher': 'nr_common',
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
         'record_class': PUBLISHED_COMMON_RECORD,

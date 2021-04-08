@@ -9,7 +9,6 @@
 import logging
 
 from nr_generic import config
-from nr_generic.api import CommonAPI
 
 log = logging.getLogger('nr-common')
 
@@ -25,7 +24,6 @@ class NRCommon(object):
     def init_app(self, app):
         """Flask application initialization."""
         self.init_config(app)
-        app.extensions['nr-common'] = CommonAPI(app)
 
     def init_config(self, app):
         """Initialize configuration.

@@ -1095,7 +1095,7 @@ elasticsearch6 = ["invenio-search[elasticsearch6] (>=1.3.1,<1.4.0)"]
 elasticsearch7 = ["invenio-search[elasticsearch7] (>=1.3.1,<1.4.0)"]
 files = ["invenio-files-rest (>=1.2.0,<1.3.0)", "invenio-iiif (>=1.1.0,<1.2.0)", "invenio-previewer (>=1.2.1,<1.3.0)", "invenio-records-files (>=1.2.1,<1.3.0)"]
 metadata = ["invenio-indexer (>=1.1.1,<1.2.0)", "invenio-jsonschemas (>=1.1.0,<1.2.0)", "invenio-oaiserver (>=1.2.0,<1.3.0)", "invenio-pidstore (>=1.2.0,<1.3.0)", "invenio-records-rest (>=1.7.1,<1.8.0)", "invenio-records-ui (>=1.1.0,<1.2.0)", "invenio-records (>=1.3.1,<1.4.0)", "invenio-search-ui (>=1.2.0,<1.3.0)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.5,<1.1.0)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.5,<1.1.0)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.5,<1.1.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.5,<1.1.0)"]
 tests = ["check-manifest (>=0.35)", "coverage (>=4.5.3)", "isort (>=4.3)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-invenio (>=1.3.1,<1.4.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
@@ -1117,9 +1117,9 @@ invenio-i18n = ">=1.2.0"
 [package.extras]
 all = ["Sphinx (>=3)", "cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>=2.10.5)"]
 docs = ["Sphinx (>=3)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
-sqlite = ["invenio-db[versioning,sqlite] (>=1.0.8)"]
+sqlite = ["invenio-db[sqlite,versioning] (>=1.0.8)"]
 tests = ["cachelib (>=0.1)", "pytest-invenio (>=1.4.1)", "redis (>=2.10.5)"]
 
 [[package]]
@@ -1156,7 +1156,7 @@ ua-parser = ">=0.7.3"
 admin = ["invenio-admin (>=1.2.1)"]
 all = ["invenio-admin (>=1.2.1)", "Sphinx (>=3)", "pytest-invenio (>=1.4.0)"]
 docs = ["Sphinx (>=3)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
 sqlite = ["invenio-db[versioning] (>=1.0.8)"]
 tests = ["pytest-invenio (>=1.4.0)"]
@@ -1548,7 +1548,7 @@ WTForms-Alchemy = ">=0.15.0"
 admin = ["invenio-admin (>=1.2.1)"]
 all = ["invenio-admin (>=1.2.1)", "Sphinx (>=2,<3)", "redis (>=2.10.5)", "pytest-invenio (>=1.4.0)"]
 docs = ["Sphinx (>=2,<3)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.8)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.8)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.8)"]
 redis = ["redis (>=2.10.5)"]
 sqlite = ["invenio-db[versioning] (>=1.0.8)"]
@@ -1658,7 +1658,7 @@ werkzeug = ">=0.14.1"
 admin = ["Flask-Admin (>=1.3.0)"]
 all = ["Sphinx (>=1.7.2)", "Flask-Admin (>=1.3.0)", "check-manifest (>=0.25)", "coverage (>=4.5.3)", "Flask-Menu (>=0.5.0)", "invenio-admin (>=1.0.0)", "isort (>=4.3.0)", "mock (>=1.3.0)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
 docs = ["Sphinx (>=1.7.2)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.0)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.0)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.0)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.5.3)", "Flask-Menu (>=0.5.0)", "invenio-admin (>=1.0.0)", "isort (>=4.3.0)", "mock (>=1.3.0)", "pydocstyle (>=3.0.0)", "pytest-cov (>=2.7.1)", "pytest-pep8 (>=1.0.6)", "pytest (>=4.6.4,<5.0.0)"]
@@ -1680,7 +1680,7 @@ invenio-records-rest = ">=1.6.3"
 [package.extras]
 all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-indexer (>=1.1.0)", "invenio-search[elasticsearch6] (>=1.2.0)", "isort (>=4.3.4)", "mock (>=1.3.0)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.7.0)"]
 docs = ["Sphinx (>=1.5.1)"]
-mysql = ["invenio-db[mysql,versioning] (>=1.0.0)"]
+mysql = ["invenio-db[versioning,mysql] (>=1.0.0)"]
 postgresql = ["invenio-db[versioning,postgresql] (>=1.0.0)"]
 sqlite = ["invenio-db[versioning] (>=1.0.0)"]
 tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-indexer (>=1.1.0)", "invenio-search[elasticsearch6] (>=1.2.0)", "isort (>=4.3.4)", "mock (>=1.3.0)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=3.7.0)"]
@@ -1734,9 +1734,9 @@ invenio-pidstore = ">=1.2.0"
 invenio-records = ">=1.0.0"
 
 [package.extras]
-all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[mysql,versioning,postgresql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+all = ["Sphinx (>=1.5.1)", "check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[versioning,postgresql,mysql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 docs = ["Sphinx (>=1.5.1)"]
-tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[mysql,versioning,postgresql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
+tests = ["check-manifest (>=0.25)", "coverage (>=4.0)", "invenio-access (>=1.0.0)", "invenio-accounts (>=1.2.0)", "invenio-db[versioning,postgresql,mysql] (>=1.0.0)", "isort (>=4.2.2)", "pydocstyle (>=1.0.0)", "pytest-cov (>=1.8.0)", "pytest-pep8 (>=1.0.6)", "pytest (>=2.8.0)"]
 
 [[package]]
 name = "invenio-rest"
@@ -3290,6 +3290,23 @@ python-versions = "*"
 widechars = ["wcwidth"]
 
 [[package]]
+name = "techlib-nr-common"
+version = "3.0.0a41"
+description = "NR common data types"
+category = "dev"
+optional = false
+python-versions = ">=3.8,<4.0"
+
+[package.dependencies]
+idutils = ">=1.1.8,<2.0.0"
+isbnlib = ">=3.10.3,<4.0.0"
+oarepo-invenio-model = ">=2.0.0,<3.0.0"
+python-stdnum = ">=1.16,<2.0"
+
+[package.extras]
+docs = ["sphinx (>=1.5.1,<2.0.0)"]
+
+[[package]]
 name = "testpath"
 version = "0.4.4"
 description = "Test utilities for code working with files and commands"
@@ -3550,7 +3567,7 @@ docs = ["sphinx"]
 [metadata]
 lock-version = "1.1"
 python-versions = "^3.8"
-content-hash = "da5c8f40cdb270011a0dda75ed23f41ee30097f195390677c555246f03d12f1f"
+content-hash = "74f008b4e44fbb4e888d7df54883ec5290227644ff5643fdb08eab77d30ef0e7"
 
 [metadata.files]
 alabaster = [
@@ -4791,6 +4808,10 @@ sqlalchemy-utils = [
 tabulate = [
     {file = "tabulate-0.8.9-py3-none-any.whl", hash = "sha256:d7c013fe7abbc5e491394e10fa845f8f32fe54f8dc60c6622c6cf482d25d47e4"},
     {file = "tabulate-0.8.9.tar.gz", hash = "sha256:eb1d13f25760052e8931f2ef80aaf6045a6cceb47514db8beab24cded16f13a7"},
+]
+techlib-nr-common = [
+    {file = "techlib-nr-common-3.0.0a41.tar.gz", hash = "sha256:ea9ef3ab25b7c4feff82b7c04267111e343739efd16f2c94d427df7ae411e4d2"},
+    {file = "techlib_nr_common-3.0.0a41-py3-none-any.whl", hash = "sha256:121df84e5a86ad6be0f68d3b372969cb4842674704f472b03cc30380be01ccc9"},
 ]
 testpath = [
     {file = "testpath-0.4.4-py2.py3-none-any.whl", hash = "sha256:bfcf9411ef4bf3db7579063e0546938b1edda3d69f4e1fb8756991f5951f85d4"},

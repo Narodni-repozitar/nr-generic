@@ -2,17 +2,16 @@ import os
 
 from flask import url_for
 from invenio_records.api import Record
+from nr_common.marshmallow import CommonMetadataSchemaV2
 from oarepo_communities.record import CommunityRecordMixin
-from oarepo_fsm.mixins import FSMMixin
 from oarepo_records_draft.record import InvalidRecordAllowedMixin, DraftRecordMixin
 from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_validate import SchemaKeepingRecordMixin, MarshmallowValidatedRecordMixin
 
 from .constants import COMMON_ALLOWED_SCHEMAS, COMMON_PREFERRED_SCHEMA
-from .marshmallow import CommonMetadataSchemaV2
 
-published_index_name = 'nr_generic-nr-common-v1.0.0'
-draft_index_name = 'draft-nr_generic-nr-common-v1.0.0'
+published_index_name = 'nr_common-nr-common-v1.0.0'
+draft_index_name = 'draft-nr_common-nr-common-v1.0.0'
 all_index_name = 'nr-all'
 
 prefixed_published_index_name = os.environ.get('INVENIO_SEARCH_INDEX_PREFIX',
