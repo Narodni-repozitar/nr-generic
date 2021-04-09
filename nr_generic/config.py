@@ -1,5 +1,7 @@
 from __future__ import absolute_import, print_function
 
+from functools import partial
+
 from invenio_records_rest.facets import terms_filter, range_filter
 from invenio_records_rest.utils import allow_all, deny_all
 from oarepo_communities.links import community_record_links_factory
@@ -14,6 +16,7 @@ from nr_generic.constants import PUBLISHED_COMMON_PID_TYPE, PUBLISHED_COMMON_REC
 from nr_generic.constants import published_index_name, draft_index_name
 from nr_generic.search import GenericRecordsSearch
 from nr_common.search import community_search_factory
+from nr_common.links import nr_links_factory
 
 _ = lambda x: x
 
@@ -41,7 +44,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -61,7 +64,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'list_route': '/<community_id>/common/draft/',
         'item_route': f'/<commpid(nrthe,model="common/draft",record_class="nr_generic.record:DraftThesisRecord"):pid_value>',
         'search_index': draft_index_name,
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_factory_imp': community_search_factory,
         'search_class': GenericRecordsSearch,
         'search_serializers': {
@@ -108,7 +111,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -127,7 +130,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'list_route': '/common/draft/',
         'item_route': f'/not-really-used',
         'search_index': draft_index_name,
-        'links_factory_imp': community_record_links_factory,
+        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
@@ -162,7 +165,7 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/common/all/',
-        links_factory_imp=community_record_links_factory,
+        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
@@ -191,7 +194,7 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/<community_id>/common/all/',
-        links_factory_imp=community_record_links_factory,
+        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
