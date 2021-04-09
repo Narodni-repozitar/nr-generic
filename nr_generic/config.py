@@ -10,22 +10,24 @@ from oarepo_ui.facets import date_histogram_facet, translate_facets
 from oarepo_ui.filters import group_by_terms_filter, boolean_filter
 
 from nr_generic.constants import PUBLISHED_COMMON_PID_TYPE, PUBLISHED_COMMON_RECORD, \
-    DRAFT_COMMON_PID_TYPE, DRAFT_COMMON_RECORD
-from nr_generic.record import published_index_name, draft_index_name
+    DRAFT_COMMON_PID_TYPE, DRAFT_COMMON_RECORD, ALL_COMMON_PID_TYPE, ALL_COMMON_RECORD_CLASS, all_common_index_name
+from nr_generic.constants import published_index_name, draft_index_name
 from nr_generic.search import GenericRecordsSearch
+from nr_common.search import community_search_factory
 
 _ = lambda x: x
 
 RECORDS_DRAFT_ENDPOINTS = {
-    'common': {
-        'draft': 'draft-common',
+    'common-community': {
+        'draft': 'draft-common-community',
         'pid_type': PUBLISHED_COMMON_PID_TYPE,
-        'pid_minter': 'nr_common',
-        'pid_fetcher': 'nr_common',
+        'pid_minter': 'nr_generic',
+        'pid_fetcher': 'nr_generic',
         'default_endpoint_prefix': True,
         'max_result_window': 500000,
         'record_class': PUBLISHED_COMMON_RECORD,
         'search_index': published_index_name,
+        'search_factory_imp': community_search_factory,
 
         'list_route': '/<community_id>/common/',
         'item_route': f'/<commpid(nrthe,model="common",record_class="nr_generic.record:PublishedThesisRecord"):pid_value>',
@@ -52,7 +54,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         )
 
     },
-    'draft-common': {
+    'draft-common-community': {
         'pid_type': DRAFT_COMMON_PID_TYPE,
         'record_class': DRAFT_COMMON_RECORD,
 
@@ -60,6 +62,7 @@ RECORDS_DRAFT_ENDPOINTS = {
         'item_route': f'/<commpid(nrthe,model="common/draft",record_class="nr_generic.record:DraftThesisRecord"):pid_value>',
         'search_index': draft_index_name,
         'links_factory_imp': community_record_links_factory,
+        'search_factory_imp': community_search_factory,
         'search_class': GenericRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
@@ -83,7 +86,127 @@ RECORDS_DRAFT_ENDPOINTS = {
             delete_file_factory='nr_common.permissions.delete_draft_file_permission_impl'
         )
 
+    },
+    'common': {
+        'draft': 'draft-common',
+        'pid_type': PUBLISHED_COMMON_PID_TYPE + '-common',
+        'pid_minter': 'nr_generic',
+        'pid_fetcher': 'nr_generic',
+        'default_endpoint_prefix': True,
+        'max_result_window': 500000,
+        'record_class': ALL_COMMON_RECORD_CLASS,
+        'search_index': published_index_name,
+
+        'list_route': '/common/',
+        'item_route': f'/not-really-used',
+        'publish_permission_factory_imp': deny_all,
+        'unpublish_permission_factory_imp': deny_all,
+        'edit_permission_factory_imp': deny_all,
+        'list_permission_factory_imp': allow_all,
+        'read_permission_factory_imp': allow_all,
+        'create_permission_factory_imp': deny_all,
+        'update_permission_factory_imp': deny_all,
+        'delete_permission_factory_imp': deny_all,
+        'default_media_type': 'application/json',
+        'links_factory_imp': community_record_links_factory,
+        'search_class': GenericRecordsSearch,
+        # 'indexer_class': CommitingRecordIndexer,
+        'files': dict(
+            # Who can upload attachments to a draft dataset record
+            put_file_factory=deny_all,
+            # Who can download attachments from a draft dataset record
+            get_file_factory=allow_all,
+            # Who can delete attachments from a draft dataset record
+            delete_file_factory=deny_all
+        )
+    },
+    'draft-common': {
+        'pid_type': DRAFT_COMMON_PID_TYPE + '-draft-common',
+        'record_class': ALL_COMMON_RECORD_CLASS,
+
+        'list_route': '/common/draft/',
+        'item_route': f'/not-really-used',
+        'search_index': draft_index_name,
+        'links_factory_imp': community_record_links_factory,
+        'search_class': GenericRecordsSearch,
+        'search_serializers': {
+            'application/json': 'oarepo_validate:json_search',
+        },
+        'record_serializers': {
+            'application/json': 'oarepo_validate:json_response',
+        },
+
+        'create_permission_factory_imp': deny_all,
+        'update_permission_factory_imp': deny_all,
+        'read_permission_factory_imp': 'nr_common.permissions.read_draft_object_permission_impl',
+        'delete_permission_factory_imp': deny_all,
+        'list_permission_factory_imp': 'nr_common.permissions.list_draft_object_permission_impl',
+        'files': dict(
+            put_file_factory=deny_all,
+            get_file_factory='nr_common.permissions.get_draft_file_permission_impl',
+            delete_file_factory=deny_all
+        )
     }
+}
+
+RECORDS_REST_ENDPOINTS = {
+    'all-common': dict(
+        pid_type=ALL_COMMON_PID_TYPE,
+        pid_minter='nr_all',
+        pid_fetcher='nr_all',
+        default_endpoint_prefix=True,
+        record_class=ALL_COMMON_RECORD_CLASS,
+        search_class=GenericRecordsSearch,
+        search_index=all_common_index_name,
+        search_serializers={
+            'application/json': 'oarepo_validate:json_search',
+        },
+        list_route='/common/all/',
+        links_factory_imp=community_record_links_factory,
+        default_media_type='application/json',
+        max_result_window=10000,
+        # not used really
+        item_route=f'/commons/'
+                   f'/not-used-but-must-be-present',
+        list_permission_factory_imp='nr_common.permissions.list_all_object_permission_impl',
+        create_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+        update_permission_factory_imp=deny_all,
+        read_permission_factory_imp=deny_all,
+        record_serializers={
+            'application/json': 'oarepo_validate:json_response',
+        },
+        use_options_view=False
+    ),
+    'community-common': dict(
+        pid_type=ALL_COMMON_PID_TYPE + '-community-all',
+        pid_minter='nr_all',
+        pid_fetcher='nr_all',
+        default_endpoint_prefix=True,
+        record_class=ALL_COMMON_RECORD_CLASS,
+        search_class=GenericRecordsSearch,
+        search_index=all_common_index_name,
+        search_factory_imp=community_search_factory,
+        search_serializers={
+            'application/json': 'oarepo_validate:json_search',
+        },
+        list_route='/<community_id>/common/all/',
+        links_factory_imp=community_record_links_factory,
+        default_media_type='application/json',
+        max_result_window=10000,
+        # not used really
+        item_route=f'/common/'
+                   f'/not-used-but-must-be-present',
+        list_permission_factory_imp='nr_common.permissions.list_all_object_permission_impl',
+        create_permission_factory_imp=deny_all,
+        delete_permission_factory_imp=deny_all,
+        update_permission_factory_imp=deny_all,
+        read_permission_factory_imp=deny_all,
+        record_serializers={
+            'application/json': 'oarepo_validate:json_response',
+        },
+        use_options_view=False
+    )
 }
 
 ELASTICSEARCH_LANGUAGE_TEMPLATES = {

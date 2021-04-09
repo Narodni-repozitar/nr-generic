@@ -10,16 +10,8 @@ from oarepo_records_draft.record import InvalidRecordAllowedMixin, DraftRecordMi
 from oarepo_references.mixins import ReferenceEnabledRecordMixin
 from oarepo_validate import SchemaKeepingRecordMixin, MarshmallowValidatedRecordMixin
 
-from .constants import COMMON_ALLOWED_SCHEMAS, COMMON_PREFERRED_SCHEMA
-
-published_index_name = 'nr_common-nr-common-v1.0.0'
-draft_index_name = 'draft-nr_common-nr-common-v1.0.0'
-all_index_name = 'nr-all'
-
-prefixed_published_index_name = os.environ.get('INVENIO_SEARCH_INDEX_PREFIX',
-                                               '') + published_index_name
-prefixed_draft_index_name = os.environ.get('INVENIO_SEARCH_INDEX_PREFIX', '') + draft_index_name
-prefixed_all_index_name = os.environ.get('INVENIO_SEARCH_INDEX_PREFIX', '') + all_index_name
+from .constants import COMMON_ALLOWED_SCHEMAS, COMMON_PREFERRED_SCHEMA, published_index_name, draft_index_name, \
+    all_common_index_name
 
 
 class CommonBaseRecord(SchemaKeepingRecordMixin,
@@ -38,7 +30,7 @@ class PublishedCommonRecord(InvalidRecordAllowedMixin, CommonBaseRecord):
 
     @property
     def canonical_url(self):
-        return url_for('invenio_records_rest.common_item',
+        return url_for('invenio_records_rest.common-community_item',
                        pid_value=CommunityPIDValue(
                            self['control_number'],
                            current_oarepo_communities.get_primary_community_field(self)),
@@ -50,8 +42,15 @@ class DraftCommonRecord(DraftRecordMixin, CommonBaseRecord):
 
     @property
     def canonical_url(self):
-        return url_for('invenio_records_rest.draft-common_item',
+        return url_for('invenio_records_rest.draft-common-community_item',
                        pid_value=CommunityPIDValue(
                            self['control_number'],
                            current_oarepo_communities.get_primary_community_field(self)),
                        _external=True)
+
+
+class AllCommonRecord(SchemaKeepingRecordMixin, CommunityRecordMixin, Record):
+    ALLOWED_SCHEMAS = COMMON_ALLOWED_SCHEMAS
+    PREFERRED_SCHEMA = COMMON_PREFERRED_SCHEMA
+    index_name = all_common_index_name
+    # TODO: better canonical url based on if the class is published or not

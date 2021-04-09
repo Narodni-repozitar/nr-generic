@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "techlib-nr-generic"
-version = "1.0.0a1"
+version = "1.0.0a2"
 description = "NR generic model REST API"
 license = "MIT"
 keywords = ["National", "Repository", "common", "model", "Invenio"]
@@ -17,7 +17,7 @@ isbnlib = "^3.10.3"
 sphinx = { version = "^1.5.1", optional = true }
 python-stdnum = "^1.16"
 oarepo-invenio-model = "^2.0.0"
-techlib-nr-common = "^3.0.0a42"
+techlib-nr-common = "^3.0.0a43"
 
 [tool.poetry.dev-dependencies]
 pytest = "^5.0.0"
@@ -33,7 +33,7 @@ oarepo-records-draft = "^5.0.0a7"
 pytest-runner = "^5.3.0"
 oarepo-fsm = "^1.5.0"
 oarepo-communities = "^2.0.1"
-techlib-nr-common = "^3.0.0-alpha.41"
+techlib-nr-common = "^3.0.0a44"
 
 [tool.poetry.extras]
 docs = ["sphinx"]
