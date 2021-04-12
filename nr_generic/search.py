@@ -9,7 +9,8 @@ class GenericRecordsSearch(NRRecordsSearch):
         'creator', 'resourceType', 'contributor',
         'keywords', 'subject', 'abstract', 'state',
         '_administration.primaryCommunity',
-        '_administration.communities'
+        '_administration.communities',
+        '$schema'
     ]
     HIGHLIGHT_FIELDS = {
         'title.cs': None,
