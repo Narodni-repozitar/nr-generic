@@ -7,7 +7,8 @@ class GenericRecordsSearch(NRRecordsSearch):
         'oarepo:draft',
         'title', 'dateIssued',
         'creator', 'resourceType', 'contributor',
-        'keywords', 'subject', 'abstract', 'state',
+        'keywords', 'subject', 'abstract', 'state', 'accessRights',
+        'language',
         '_administration.primaryCommunity',
         '_administration.communities',
         '$schema'
