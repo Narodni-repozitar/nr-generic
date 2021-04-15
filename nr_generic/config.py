@@ -8,7 +8,7 @@ from oarepo_communities.links import community_record_links_factory
 from oarepo_multilingual import language_aware_text_term_facet, \
     language_aware_text_terms_filter
 from oarepo_records_draft.rest import term_facet, DRAFT_IMPORTANT_FILTERS, DRAFT_IMPORTANT_FACETS
-from oarepo_ui.facets import date_histogram_facet, translate_facets
+from oarepo_ui.facets import date_histogram_facet, translate_facets, nested_facet
 from oarepo_ui.filters import group_by_terms_filter, boolean_filter
 
 from nr_generic.constants import PUBLISHED_COMMON_PID_TYPE, PUBLISHED_COMMON_RECORD, \
@@ -257,7 +257,7 @@ CURATOR_FILTERS = {
 
 FACETS = {
     'person': term_facet('person.keyword'),
-    'accessRights': term_facet('accessRights.title.en.raw'),
+    'accessRights': nested_facet("accessRights", term_facet('accessRights.title.en.raw')),
     'resourceType': language_aware_text_term_facet('resourceType.title'),
     'keywords': language_aware_text_term_facet('keywords'),
     'subject': language_aware_text_term_facet('subjectAll'),
