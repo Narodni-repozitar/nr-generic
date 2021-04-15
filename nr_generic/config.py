@@ -9,10 +9,11 @@ from oarepo_multilingual import language_aware_text_term_facet, \
     language_aware_text_terms_filter
 from oarepo_records_draft.rest import term_facet, DRAFT_IMPORTANT_FILTERS, DRAFT_IMPORTANT_FACETS
 from oarepo_ui.facets import date_histogram_facet, translate_facets, nested_facet
-from oarepo_ui.filters import group_by_terms_filter, boolean_filter
+from oarepo_ui.filters import group_by_terms_filter, boolean_filter, nested_filter
 
 from nr_generic.constants import PUBLISHED_COMMON_PID_TYPE, PUBLISHED_COMMON_RECORD, \
-    DRAFT_COMMON_PID_TYPE, DRAFT_COMMON_RECORD, ALL_COMMON_PID_TYPE, ALL_COMMON_RECORD_CLASS, all_common_index_name
+    DRAFT_COMMON_PID_TYPE, DRAFT_COMMON_RECORD, ALL_COMMON_PID_TYPE, ALL_COMMON_RECORD_CLASS, \
+    all_common_index_name
 from nr_generic.constants import published_index_name, draft_index_name
 from nr_generic.search import GenericRecordsSearch
 from nr_common.search import community_search_factory
@@ -33,10 +34,13 @@ RECORDS_DRAFT_ENDPOINTS = {
         'search_factory_imp': community_search_factory,
 
         'list_route': '/<community_id>/common/',
-        'item_route': f'/<commpid({PUBLISHED_COMMON_PID_TYPE},model="common",record_class="{PUBLISHED_COMMON_RECORD}"):pid_value>',
+        'item_route': f'/<commpid({PUBLISHED_COMMON_PID_TYPE},model="common",record_class="'
+                      f'{PUBLISHED_COMMON_RECORD}"):pid_value>',
 
-        'publish_permission_factory_imp': 'nr_common.permissions.publish_draft_object_permission_impl',
-        'unpublish_permission_factory_imp': 'nr_common.permissions.unpublish_draft_object_permission_impl',
+        'publish_permission_factory_imp':
+            'nr_common.permissions.publish_draft_object_permission_impl',
+        'unpublish_permission_factory_imp':
+            'nr_common.permissions.unpublish_draft_object_permission_impl',
         'edit_permission_factory_imp': 'nr_common.permissions.update_object_permission_impl',
         'list_permission_factory_imp': allow_all,
         'read_permission_factory_imp': allow_all,
@@ -44,7 +48,8 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        'links_factory_imp': partial(community_record_links_factory,
+                                     original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -62,9 +67,11 @@ RECORDS_DRAFT_ENDPOINTS = {
         'record_class': DRAFT_COMMON_RECORD,
 
         'list_route': '/<community_id>/common/draft/',
-        'item_route': f'/<commpid({DRAFT_COMMON_PID_TYPE},model="common/draft",record_class="{DRAFT_COMMON_RECORD}"):pid_value>',
+        'item_route': f'/<commpid({DRAFT_COMMON_PID_TYPE},model="common/draft",record_cla'
+                      f'ss="{DRAFT_COMMON_RECORD}"):pid_value>',
         'search_index': draft_index_name,
-        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        'links_factory_imp': partial(community_record_links_factory,
+                                     original_links_factory=nr_links_factory),
         'search_factory_imp': community_search_factory,
         'search_class': GenericRecordsSearch,
         'search_serializers': {
@@ -74,10 +81,13 @@ RECORDS_DRAFT_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_response',
         },
 
-        'create_permission_factory_imp': 'nr_common.permissions.create_draft_object_permission_impl',
-        'update_permission_factory_imp': 'nr_common.permissions.update_draft_object_permission_impl',
+        'create_permission_factory_imp':
+            'nr_common.permissions.create_draft_object_permission_impl',
+        'update_permission_factory_imp':
+            'nr_common.permissions.update_draft_object_permission_impl',
         'read_permission_factory_imp': 'nr_common.permissions.read_draft_object_permission_impl',
-        'delete_permission_factory_imp': 'nr_common.permissions.delete_draft_object_permission_impl',
+        'delete_permission_factory_imp':
+            'nr_common.permissions.delete_draft_object_permission_impl',
         'list_permission_factory_imp': 'nr_common.permissions.list_draft_object_permission_impl',
         'record_loaders': {
             'application/json': 'oarepo_validate.json_files_loader',
@@ -111,7 +121,8 @@ RECORDS_DRAFT_ENDPOINTS = {
         'update_permission_factory_imp': deny_all,
         'delete_permission_factory_imp': deny_all,
         'default_media_type': 'application/json',
-        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        'links_factory_imp': partial(community_record_links_factory,
+                                     original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         # 'indexer_class': CommitingRecordIndexer,
         'files': dict(
@@ -130,7 +141,8 @@ RECORDS_DRAFT_ENDPOINTS = {
         'list_route': '/common/draft/',
         'item_route': f'/not-really-used',
         'search_index': draft_index_name,
-        'links_factory_imp': partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        'links_factory_imp': partial(community_record_links_factory,
+                                     original_links_factory=nr_links_factory),
         'search_class': GenericRecordsSearch,
         'search_serializers': {
             'application/json': 'oarepo_validate:json_search',
@@ -165,7 +177,8 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/common/all/',
-        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        links_factory_imp=partial(community_record_links_factory,
+                                  original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
@@ -194,7 +207,8 @@ RECORDS_REST_ENDPOINTS = {
             'application/json': 'oarepo_validate:json_search',
         },
         list_route='/<community_id>/common/all/',
-        links_factory_imp=partial(community_record_links_factory, original_links_factory=nr_links_factory),
+        links_factory_imp=partial(community_record_links_factory,
+                                  original_links_factory=nr_links_factory),
         default_media_type='application/json',
         max_result_window=10000,
         # not used really
@@ -227,20 +241,26 @@ ELASTICSEARCH_LANGUAGE_TEMPLATES = {
 
 FILTERS = {
     _('person'): terms_filter('person.keyword'),
-    _('accessRights'): group_by_terms_filter('accessRights.title.en.raw', {
-        "true": "open access",
-        1: "open access",
-        True: "open access",
-        "1": "open access",
-        False: ["embargoed access", "restricted access", "metadata only access"],
-        0: ["embargoed access", "restricted access", "metadata only access"],
-        "false": ["embargoed access", "restricted access", "metadata only access"],
-        "0": ["embargoed access", "restricted access", "metadata only access"],
-    }),
-    _('resourceType'): language_aware_text_terms_filter('resourceType.title'),
+    _('accessRights'): nested_filter("accessRights",
+                                     group_by_terms_filter('accessRights.title.en.raw', {
+                                         "true": "open access",
+                                         1: "open access",
+                                         True: "open access",
+                                         "1": "open access",
+                                         False: ["embargoed access", "restricted access",
+                                                 "metadata only access"],
+                                         0: ["embargoed access", "restricted access",
+                                             "metadata only access"],
+                                         "false": ["embargoed access", "restricted access",
+                                                   "metadata only access"],
+                                         "0": ["embargoed access", "restricted access",
+                                               "metadata only access"],
+                                     })),
+    _('resourceType'): nested_filter('resourceType',
+                                     language_aware_text_terms_filter('resourceType.title')),
     _('keywords'): language_aware_text_terms_filter('keywords'),
-    _('subject'): language_aware_text_terms_filter('subjectAll'),
-    _('language'): language_aware_text_terms_filter('language.title'),
+    _('subject'): nested_filter('subjectAll', language_aware_text_terms_filter('subjectAll')),
+    _('language'): nested_filter('language', language_aware_text_terms_filter('language.title')),
     _('date'): range_filter('dateAll.date'),
     _('dateIssued'): range_filter('dateIssued.date'),
     _('dateDefended'): range_filter('dateDefended.date'),
@@ -248,32 +268,32 @@ FILTERS = {
 }
 
 CURATOR_FILTERS = {
-    _('accessRightsCurator'): language_aware_text_terms_filter('accessRights.title'),
-    _('rights'): language_aware_text_terms_filter('rights.title'),
-    _('provider'): language_aware_text_terms_filter('provider.title'),
-    _('entities'): language_aware_text_terms_filter('entities.title'),
+    _('accessRightsCurator'): nested_filter('accessRights', language_aware_text_terms_filter('accessRights.title')),
+    _('rights'): nested_filter('rights', language_aware_text_terms_filter('rights.title')),
+    _('provider'): nested_filter('provider', language_aware_text_terms_filter('provider.title')),
+    _('entities'): nested_filter('entities', language_aware_text_terms_filter('entities.title')),
     _('isGL'): boolean_filter('isGL')
 }
 
 FACETS = {
     'person': term_facet('person.keyword'),
     'accessRights': nested_facet("accessRights", term_facet('accessRights.title.en.raw')),
-    'resourceType': language_aware_text_term_facet('resourceType.title'),
+    'resourceType': nested_facet('resourceType', language_aware_text_term_facet('resourceType.title')),
     'keywords': language_aware_text_term_facet('keywords'),
-    'subject': language_aware_text_term_facet('subjectAll'),
-    'language': language_aware_text_term_facet('language.title'),
+    'subject': nested_facet('subjectAll', language_aware_text_term_facet('subjectAll')),
+    'language': nested_facet('language', language_aware_text_term_facet('language.title')),
     'date': date_histogram_facet('dateAll.date'),
 }
 
 CURATOR_FACETS = {
-    'rights': language_aware_text_term_facet('rights.title'),
-    'provider': language_aware_text_term_facet('provider.title'),
-    'entities': language_aware_text_term_facet('entities.title'),
+    'rights': nested_facet('rights', language_aware_text_term_facet('rights.title')),
+    'provider': nested_facet('provider', language_aware_text_term_facet('provider.title')),
+    'entities': nested_facet('entities', language_aware_text_term_facet('entities.title')),
     'dateIssued': date_histogram_facet('dateIssued.date'),
     'dateDefended': date_histogram_facet('dateDefended.date'),
     'dateModified': date_histogram_facet('dateModified.date'),
     'isGL': term_facet('isGL'),
-    'accessRightsCurator': language_aware_text_term_facet('accessRights.title')
+    'accessRightsCurator': nested_facet('accessRights', language_aware_text_term_facet('accessRights.title'))
 }
 
 # def degree_grantor_filter(field, path=None):
