@@ -259,7 +259,7 @@ FILTERS = {
     _('resourceType'): nested_filter('resourceType',
                                      language_aware_text_terms_filter('resourceType.title')),
     _('keywords'): language_aware_text_terms_filter('keywords'),
-    _('subject'): nested_filter('subjectAll', language_aware_text_terms_filter('subjectAll')),
+    _('subject'): language_aware_text_terms_filter('subjectAll'),
     _('language'): nested_filter('language', language_aware_text_terms_filter('language.title')),
     _('date'): range_filter('dateAll.date'),
     _('dateIssued'): range_filter('dateIssued.date'),
@@ -280,7 +280,7 @@ FACETS = {
     'accessRights': nested_facet("accessRights", term_facet('accessRights.title.en.raw')),
     'resourceType': nested_facet('resourceType', language_aware_text_term_facet('resourceType.title')),
     'keywords': language_aware_text_term_facet('keywords'),
-    'subject': nested_facet('subjectAll', language_aware_text_term_facet('subjectAll')),
+    'subject': language_aware_text_term_facet('subjectAll'),
     'language': nested_facet('language', language_aware_text_term_facet('language.title')),
     'date': date_histogram_facet('dateAll.date'),
 }
