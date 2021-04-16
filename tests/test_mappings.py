@@ -36,7 +36,8 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                         'primaryCommunity': {'type': 'keyword'},
                         'state': {'type': 'keyword'}
                     },
-                    'type': 'object'},
+                    'type': 'object'
+                },
                 'abstract': {
                     'properties': {
                         'bg': {
@@ -219,7 +220,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                             'type': 'object'
                         }
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'accessibility': {
                     'properties': {
@@ -408,7 +409,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                                     'type': 'object'
                                 }
                             },
-                            'type': 'object'
+                            'type': 'nested'
                         },
                         'scopusID': {'type': 'keyword'},
                         'vedidk': {'type': 'keyword'}
@@ -600,7 +601,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                         },
                         'url': {'type': 'keyword'}
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'extent': {'index': False, 'type': 'keyword'},
                 'externalLocation': {'type': 'keyword'},
@@ -742,7 +743,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                                 },
                                 'url': {'type': 'keyword'}
                             },
-                            'type': 'object'
+                            'type': 'nested'
                         },
                         'fundingProgram': {
                             'fields': {'keyword': {'type': 'keyword'}},
@@ -931,7 +932,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                             'type': 'object'
                         }
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'note': {'type': 'text'},
                 'person': {
@@ -1074,7 +1075,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                         },
                         'url': {'type': 'keyword'}
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'publicationPlace': {
                     'properties': {
@@ -1171,7 +1172,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                                     'type': 'object'
                                 }
                             },
-                            'type': 'object'
+                            'type': 'nested'
                         },
                         'place': {
                             'fields': {'keyword': {'type': 'keyword'}},
@@ -1214,7 +1215,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                                     'type': 'object'
                                 }
                             },
-                            'type': 'object'
+                            'type': 'nested'
                         },
                         'itemStartPage': {'type': 'keyword'},
                         'itemTitle': {
@@ -1320,7 +1321,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                             'type': 'object'
                         }
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'rights': {
                     'properties': {
@@ -1417,7 +1418,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                             'type': 'object'
                         }
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'rulesExceptions': {
                     'properties': {
@@ -1663,7 +1664,7 @@ def test_mapping_1(app, es, es_index, base_json_dereferenced):
                             'type': 'object'
                         }
                     },
-                    'type': 'object'
+                    'type': 'nested'
                 },
                 'subjectAll': {
                     'properties': {
