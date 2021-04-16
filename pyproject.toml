@@ -1,7 +1,7 @@
 [tool]
 [tool.poetry]
 name = "techlib-nr-generic"
-version = "1.0.0a5"
+version = "1.0.0a6"
 description = "NR generic model REST API"
 license = "MIT"
 keywords = ["National", "Repository", "common", "model", "Invenio"]
